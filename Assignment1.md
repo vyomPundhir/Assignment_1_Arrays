@@ -1,4 +1,4 @@
-Q1.
+Q1. 
 ```javascript
 function Sum(nums, target) {
   const mapnum = new Map();
@@ -88,5 +88,112 @@ function plusOne(digits) {
 const digits = [1, 2, 3];
 const result = plusOne(digits);
 console.log("Output:", result);
+
+```
+Q5.
+```javascript
+function merge(nums1, m, nums2, n)
+{
+  let i = m - 1;
+  let j = n - 1;
+  let k = m + n - 1;
+
+  while (i >= 0 && j >= 0) {
+    if (nums1[i] > nums2[j]) {
+      nums1[k] = nums1[i];
+      i--;
+    } else {
+      nums1[k] = nums2[j];
+      j--;
+    }
+    k--;
+  }
+
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
+  }
+}
+
+const nums1 = [1, 2, 3, 0, 0, 0];
+const m = 3;
+const nums2 = [2, 5, 6];
+const n = 3;
+
+merge(nums1, m, nums2, n);
+console.log("Output:", nums1);
+```
+Q6.
+```javascript
+function containsDuplicate(nums) {
+  
+  let uniqueNums = new Set();
+
+  for (let num of nums) {
+    
+    if (uniqueNums.has(num)) {
+      return true;
+    }
+    
+    uniqueNums.add(num);
+  }
+
+  
+  return false;
+}
+
+let nums = [1, 2, 3, 1];
+console.log(containsDuplicate(nums));
+
+```
+Q7.
+```javascript
+function moveZeros(nums) {
+  let left = 0;
+  for (let right = 0; right < nums.length; right++) {
+    if (nums[right] !== 0) {
+      [nums[left], nums[right]] = [nums[right], nums[left]];
+      left++;
+    }
+  }
+  return nums;
+}
+
+const nums = [0, 1, 0, 3, 12];
+console.log(moveZeros(nums));
+```
+
+Q8.
+```javascript
+function findErrorNums(nums) {
+  const n = nums.length;
+  const count = {};
+
+  let duplicate, missing;
+
+  for (let i = 0; i < n; i++) {
+    const num = nums[i];
+
+    if (count[num]) {
+      duplicate = num;
+    } else {
+      count[num] = 1;
+    }
+  }
+
+  for (let i = 1; i <= n; i++) {
+    
+    if (!count[i]) {
+      missing = i;
+      break;
+    }
+  }
+
+  return [duplicate, missing];
+}
+
+const nums = [1, 2, 2, 4];
+console.log(findErrorNums(nums)); // Output: [2, 3]
 
 ```
